@@ -3,24 +3,19 @@ class ContactsController < ApplicationController
 
   before_action :set_contact, only: %i[show edit update destroy]
 
-  # GET /contacts
   def index
     @q = current_user.contacts.ransack(params[:q])
     @contacts = @q.result(distinct: true).includes(:user).page(params[:page]).per(10)
   end
 
-  # GET /contacts/1
   def show; end
 
-  # GET /contacts/new
   def new
     @contact = Contact.new
   end
 
-  # GET /contacts/1/edit
   def edit; end
 
-  # POST /contacts
   def create
     @contact = Contact.new(contact_params)
 
@@ -36,7 +31,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /contacts/1
   def update
     if @contact.update(contact_params)
       redirect_to @contact, notice: "Contact was successfully updated."
@@ -45,7 +39,6 @@ class ContactsController < ApplicationController
     end
   end
 
-  # DELETE /contacts/1
   def destroy
     @contact.destroy
     message = "Contact was successfully deleted."
@@ -65,12 +58,10 @@ class ContactsController < ApplicationController
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_contact
     @contact = Contact.find(params[:id])
   end
 
-  # Only allow a trusted parameter "white list" through.
   def contact_params
     params.require(:contact).permit(:user_id, :name, :email, :phone_number)
   end
