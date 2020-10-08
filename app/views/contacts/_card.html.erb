@@ -6,28 +6,20 @@
   <div class="card-body">
     <dl class="mb-1">
       <dt>User</dt>
-      <!-- Display user_id start -->
       <dd>
         <% if @contact.user.present? %>
           <%= link_to contact.user, contact.user %>
         <% end %>
       </dd>
-      <!-- Display user_id end -->
 
       <dt>Name</dt>
-      <!-- Display name start -->
       <dd><%= contact.name %></dd>
-      <!-- Display name end -->
 
       <dt>Email</dt>
-      <!-- Display email start -->
       <dd><%= contact.email %></dd>
-      <!-- Display email end -->
 
       <dt>Phone number</dt>
-      <!-- Display phone_number start -->
       <dd><%= contact.phone_number %></dd>
-      <!-- Display phone_number end -->
 
     </dl>
 
@@ -36,7 +28,6 @@
         <%= link_to_show_or_back contact, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
-      <!-- Edit link contact start -->
       <div class="col">
         <% if current_user == @contact.user %>
           <%= link_to edit_contact_url(contact), class: "btn btn-block btn-sm btn-outline-secondary" do %>
@@ -44,9 +35,7 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Edit link contact end -->
 
-      <!-- Delete link contact start -->
       <div class="col">
         <% if current_user == @contact.user %>
           <%= link_to contact, method: :delete, data: { confirm: "Do you really want to delete this contact?" }, class: "btn btn-block btn-outline-secondary" do %>
@@ -54,7 +43,6 @@
           <% end %>
         <% end %>
       </div>
-      <!-- Delete link contact end -->
     </div>
   </div>
 

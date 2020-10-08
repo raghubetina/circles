@@ -1,12 +1,7 @@
 <% was_validated = contact.errors.any? %>
 
 <%= form_with(model: contact, local: true, novalidate: true, class: "mb-3") do |f| %>
-  <!-- Label and input for user_id start -->
-  <!-- Input for "user_id" start -->
   <%= f.hidden_field :user_id, value: current_user.id %>
-  <!-- Input for "user_id" end -->
-  <!-- Label and input for user_id end -->
-  <!-- Label and input for name start -->
   <div class="form-group">
     <% name_class = "form-control" %>
     <% name_was_invalid = contact.errors.include?(:name) %>
@@ -20,9 +15,7 @@
     <% end %>
 
     <%= f.label :name %>
-    <!-- Input for name start -->
     <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
-    <!-- Input for name end -->
     <% if name_was_invalid %>
       <% contact.errors.full_messages_for(:name).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -31,8 +24,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for name end -->
-  <!-- Label and input for email start -->
   <div class="form-group">
     <% email_class = "form-control" %>
     <% email_was_invalid = contact.errors.include?(:email) %>
@@ -46,9 +37,7 @@
     <% end %>
 
     <%= f.label :email %>
-    <!-- Input for email start -->
     <%= f.text_field :email, class: email_class, placeholder: "Enter email" %>
-    <!-- Input for email end -->
     <% if email_was_invalid %>
       <% contact.errors.full_messages_for(:email).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -57,8 +46,6 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for email end -->
-  <!-- Label and input for phone_number start -->
   <div class="form-group">
     <% phone_number_class = "form-control" %>
     <% phone_number_was_invalid = contact.errors.include?(:phone_number) %>
@@ -72,9 +59,7 @@
     <% end %>
 
     <%= f.label :phone_number %>
-    <!-- Input for phone_number start -->
     <%= f.text_field :phone_number, class: phone_number_class, placeholder: "Enter phone number" %>
-    <!-- Input for phone_number end -->
     <% if phone_number_was_invalid %>
       <% contact.errors.full_messages_for(:phone_number).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -83,6 +68,5 @@
       <% end %>
     <% end %>
   </div>
-  <!-- Label and input for phone_number end -->
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

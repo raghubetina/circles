@@ -10,18 +10,14 @@
   <ul class="list-group list-group-flush">
     <% @user.contacts.each do |contact| %>
       <li class="list-group-item d-flex align-items-center justify-content-between">
-        <!-- Show link start -->
         <%= link_to contact, contact_path(contact) %>
-        <!-- Show link end -->
 
       </li>
     <% end %>
 
     <div class="card-footer">
       <div class="collapse" id="user_contacts_new_form">
-        <!-- New associationcollection form start -->
         <%= render partial: "users/user_contacts_new_form" %>
-        <!-- New associationcollection form end -->
       </div>
     </div>
 
