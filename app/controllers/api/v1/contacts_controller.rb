@@ -13,7 +13,7 @@ class Api::V1::ContactsController < Api::V1::GraphitiController
     contact = ContactResource.build(params)
 
     if contact.save
-      render jsonapi: contact, status: 201
+      render jsonapi: contact, status: :created
     else
       render jsonapi_errors: contact
     end
@@ -33,7 +33,7 @@ class Api::V1::ContactsController < Api::V1::GraphitiController
     contact = ContactResource.find(params)
 
     if contact.destroy
-      render jsonapi: { meta: {} }, status: 200
+      render jsonapi: { meta: {} }, status: :ok
     else
       render jsonapi_errors: contact
     end
