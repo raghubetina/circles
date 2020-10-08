@@ -1,0 +1,39 @@
+<!-- Form contact start -->
+<%= form_with(model: @contact, local: true) do |f| %>
+<!-- Form contact end -->
+
+  <!-- Label and input for user_id start -->
+  <!-- Input for user_id start -->
+  <%= f.hidden_field :user_id, value: @user.id %>
+  <!-- Input for user_id end -->
+  <!-- Label and input for user_id end -->
+
+  <!-- Label and input for name start -->
+  <div class="form-group">
+    <%= f.label :name %>
+    <!-- Input for name start -->
+    <%= f.text_field :name, class: "form-control" %>
+    <!-- Input for name end -->
+  </div>
+  <!-- Label and input for name end -->
+
+  <!-- Label and input for email start -->
+  <div class="form-group">
+    <%= f.label :email %>
+    <!-- Input for email start -->
+    <%= f.text_field :email, class: "form-control" %>
+    <!-- Input for email end -->
+  </div>
+  <!-- Label and input for email end -->
+
+  <!-- Label and input for phone_number start -->
+  <div class="form-group">
+    <%= f.label :phone_number %>
+    <!-- Input for phone_number start -->
+    <%= f.text_field :phone_number, class: "form-control" %>
+    <!-- Input for phone_number end -->
+  </div>
+  <!-- Label and input for phone_number end -->
+
+  <%= f.submit "Create contact", class: "btn btn-block btn-outline-secondary" %>
+<% end %>
