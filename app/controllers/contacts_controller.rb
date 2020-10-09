@@ -5,7 +5,7 @@ class ContactsController < ApplicationController
 
   def index
     @q = current_user.contacts.ransack(params[:q])
-    @contacts = @q.result(distinct: true).includes(:user).page(params[:page]).per(10)
+    @contacts = @q.result(distinct: true).includes(:user)
   end
 
   def show; end
@@ -15,7 +15,24 @@ class ContactsController < ApplicationController
   end
 
   def mass
-    @contact = Contact.new
+    contact_inputs = params.fetch(:emails)
+
+    contact_infos = contact_inputs.split(",").map(&:strip)
+
+    contacts_created_count = contact_infos.inject(0) do |count, contact_info|
+      details = contact_info.split("<").map(&:strip)
+      
+      contact_saved = Contact.create(
+        email: details.pop.chomp(",").chomp(">"),
+        name: details.pop,
+        user: current_user
+      )
+      
+      contact_saved ? count + 1 : count
+    end
+
+    message = "#{contacts_created_count} contacts added."
+    redirect_to contacts_url, notice: message
   end
 
   def edit; end
@@ -67,6 +84,6 @@ class ContactsController < ApplicationController
   end
 
   def contact_params
-    params.require(:contact).permit(:user_id, :name, :email, :phone_number)
+    params.require(:contact).permit(:user_id, :name, :email, :emails, :phone_number)
   end
 end

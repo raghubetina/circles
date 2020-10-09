@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   root to: "contacts#index"
   resources :contacts do
     collection do
-      get "mass"
+      get "new/mass" => "contacts#new_mass"
+      post "mass" => "contacts#mass"
     end
   end
   devise_for :users

@@ -1,0 +1,25 @@
+<div class="row justify-content-center mb-3">
+  <div class="col-md-8">
+    <div class="card">
+      <h2 class="card-header h4">
+        New Contact
+      </h2>
+
+      <div class="card-body">
+        <%= form_tag(mass_contacts_path, novalidate: true, class: "mb-3") do |f| %>
+          <div class="form-group">
+            <% emails_class = "form-control" %>
+
+            <%= label_tag :emails %>
+            <%= text_area_tag :emails, nil, class: emails_class, placeholder: "Enter emails" %>
+          </div>
+          <%= button_tag "Mass create contacts", class: "btn btn-outline-secondary btn-block" %>
+        <% end %>
+
+        <%= link_to :back, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-chevron-left fa-fw"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
