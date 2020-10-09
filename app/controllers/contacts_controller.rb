@@ -14,6 +14,10 @@ class ContactsController < ApplicationController
     @contact = Contact.new
   end
 
+  def mass
+    @contact = Contact.new
+  end
+
   def edit; end
 
   def create
