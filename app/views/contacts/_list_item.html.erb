@@ -1,11 +1,15 @@
-<%= link_to contact, class: "list-group-item list-group-item-action d-flex align-items-center justify-content-between" do %>
+<li id="<%= dom_id(contact)%>" class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
   <div>
-    <%= contact.name %>
+    <%= link_to edit_contact_path(contact), remote: true, class: "text-dark" do %>
+      <%= contact.name %>
     
-    &lt;<%= contact.email %>&gt;
+      &lt;<%= contact.email %>&gt;
+    <% end %>
   </div>
 
-  <span class="btn btn-sm btn-outline-secondary">
-    <i class="fas fa-chevron-right fa-fw"></i>
-  </span>
-<% end %>
+  <div>
+    <%= link_to contact, method: :delete, class: "btn btn-sm btn-outline-secondary" do %>
+      <i class="far fa-trash-alt"></i>
+    <% end %>
+  </div>
+</li>

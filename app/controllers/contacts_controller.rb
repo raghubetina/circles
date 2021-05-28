@@ -35,7 +35,12 @@ class ContactsController < ApplicationController
     redirect_to contacts_url, notice: message
   end
 
-  def edit; end
+  def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def create
     @contact = Contact.new(contact_params)
@@ -54,7 +59,10 @@ class ContactsController < ApplicationController
 
   def update
     if @contact.update(contact_params)
-      redirect_to @contact, notice: "Contact was successfully updated."
+      respond_to do |format|
+        format.html { redirect_to @contact, notice: "Contact was successfully updated." }
+        format.js
+      end
     else
       render :edit
     end

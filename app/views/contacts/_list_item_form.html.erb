@@ -1,0 +1,74 @@
+<li id="<%= dom_id(contact) %>" class="list-group-item">
+  <% was_validated = contact.errors.any? %>
+
+  <%= form_with(model: contact, local: false, novalidate: true) do |f| %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <div class="form-group">
+      <% name_class = "form-control" %>
+      <% name_was_invalid = contact.errors.include?(:name) %>
+
+      <% if was_validated %>
+        <% if name_was_invalid %>
+          <% name_class << " is-invalid" %>
+        <% else %>
+          <% name_class << " is-valid" %>
+        <% end %>
+      <% end %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+      <% if name_was_invalid %>
+        <% contact.errors.full_messages_for(:name).each do |message| %>
+          <div class="invalid-feedback d-flex">
+            <%= message %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <% email_class = "form-control" %>
+      <% email_was_invalid = contact.errors.include?(:email) %>
+
+      <% if was_validated %>
+        <% if email_was_invalid %>
+          <% email_class << " is-invalid" %>
+        <% else %>
+          <% email_class << " is-valid" %>
+        <% end %>
+      <% end %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email, class: email_class, placeholder: "Enter email" %>
+      <% if email_was_invalid %>
+        <% contact.errors.full_messages_for(:email).each do |message| %>
+          <div class="invalid-feedback d-flex">
+            <%= message %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <% phone_number_class = "form-control" %>
+      <% phone_number_was_invalid = contact.errors.include?(:phone_number) %>
+
+      <% if was_validated %>
+        <% if phone_number_was_invalid %>
+          <% phone_number_class << " is-invalid" %>
+        <% else %>
+          <% phone_number_class << " is-valid" %>
+        <% end %>
+      <% end %>
+
+      <%= f.label :phone_number %>
+      <%= f.text_field :phone_number, class: phone_number_class, placeholder: "Enter phone number" %>
+      <% if phone_number_was_invalid %>
+        <% contact.errors.full_messages_for(:phone_number).each do |message| %>
+          <div class="invalid-feedback d-flex">
+            <%= message %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <%= f.button class: "btn btn-outline-secondary btn-block" %>
+  <% end %>
+</li>
